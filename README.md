@@ -2,9 +2,14 @@
 
 Voyagr is an AI-powered travel destination recommender and booker. Built using Angular, Express, Node.js, Tailwind, Gemini, Firebase, and Google Cloud Platform. Discover personalized travel suggestions and seamless booking experiences.
 
-## Usage
+## Getting Started
 
-Navigate to https://trip-37e5b.web.app/sign-in. Create an account and begin tripping!
+1. Clone the repo
+2. Set up your `.env` files (see `.env.example` in `backend/` and `frontend/my-app/`)
+3. Run `npm install` in both `backend/` and `frontend/my-app/`
+4. Start the backend: `node backend/firebase.js`
+5. Start the frontend: `npm start --prefix frontend/my-app`
+6. Open `http://localhost:4200`
 
 ## Tech Stack
 - Angular
