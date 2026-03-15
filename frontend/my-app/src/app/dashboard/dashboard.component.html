@@ -1,0 +1,52 @@
+<div class="flex h-screen mesh-gradient noise-overlay relative">
+  <app-sidebar></app-sidebar>
+
+  <div class="flex-1 overflow-y-auto">
+    <div class="max-w-5xl mx-auto px-6 py-10">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-12 animate-fade-in">
+        <div>
+          <p class="text-sm font-medium mb-1" style="color: var(--text-tertiary);">Welcome back</p>
+          <h1 class="text-5xl font-bold tracking-tight" style="color: var(--text-primary);">
+            Hello, you<span style="color: var(--accent-blue);">.</span>
+          </h1>
+        </div>
+        <button class="btn-secondary flex items-center gap-2" (click)="logout()">
+          <i class="fas fa-arrow-right-from-bracket text-sm"></i>
+          <span>Sign Out</span>
+        </button>
+      </div>
+
+      <!-- Action Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-card depth-card cursor-pointer p-8 animate-fade-in stagger-1"
+             (click)="viewDestinationLists()">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+               style="background: linear-gradient(135deg, rgba(0,113,227,0.2), rgba(0,198,255,0.1));">
+            <i class="fas fa-layer-group text-2xl" style="color: #0071e3;"></i>
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight mb-3" style="color: var(--text-primary);">Collections</h2>
+          <p class="text-base leading-relaxed" style="color: var(--text-secondary);">Organize your liked destinations into curated groups and collections.</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-medium" style="color: var(--accent-blue);">
+            <span>Browse collections</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+
+        <div class="glass-card depth-card cursor-pointer p-8 animate-fade-in stagger-2"
+             (click)="bookDestinations()">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+               style="background: linear-gradient(135deg, rgba(48,209,88,0.2), rgba(0,198,255,0.1));">
+            <i class="fas fa-ticket text-2xl" style="color: #30d158;"></i>
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight mb-3" style="color: var(--text-primary);">Book Trips</h2>
+          <p class="text-base leading-relaxed" style="color: var(--text-secondary);">Book your favorite destinations and plan your next adventure.</p>
+          <div class="mt-6 flex items-center gap-2 text-sm font-medium" style="color: #30d158;">
+            <span>Start booking</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

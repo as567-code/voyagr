@@ -1,0 +1,53 @@
+<div class="min-h-screen flex items-center justify-center mesh-gradient noise-overlay relative">
+  <div class="glass-card p-10 w-full max-w-md animate-fade-in" style="transform: perspective(800px) rotateX(0deg);">
+    <!-- Logo -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl mb-6"
+           style="background: linear-gradient(135deg, rgba(0,113,227,0.2), rgba(0,198,255,0.1)); box-shadow: 0 8px 32px rgba(0,113,227,0.2);">
+        <i class="fas fa-paper-plane text-3xl" style="color: #0071e3;"></i>
+      </div>
+      <h1 class="text-4xl font-bold tracking-tight" style="background: linear-gradient(135deg, #f5f5f7, #a1a1a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Voyagr</h1>
+      <p class="mt-2 text-sm" style="color: var(--text-secondary);">Sign in to your account</p>
+    </div>
+
+    <form (ngSubmit)="onSignIn()" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Email</label>
+        <input
+          class="input-glass"
+          type="email"
+          placeholder="name@example.com"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Password</label>
+        <input
+          class="input-glass"
+          type="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+      </div>
+      <button class="btn-primary w-full mt-4" type="submit">
+        Sign In
+      </button>
+    </form>
+
+    <div class="mt-8 text-center">
+      <p class="text-sm" style="color: var(--text-tertiary);">
+        Don't have an account?
+        <a routerLink="/signup" class="ml-1 font-medium transition-colors duration-200"
+           style="color: var(--accent-blue);"
+           onmouseover="this.style.color='#0077ED'"
+           onmouseout="this.style.color='var(--accent-blue)'">
+          Create one
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

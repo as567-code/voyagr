@@ -1,0 +1,93 @@
+<div class="flex h-screen mesh-gradient noise-overlay relative">
+  <app-sidebar></app-sidebar>
+
+  <div class="flex-1 overflow-y-auto">
+    <div class="max-w-6xl mx-auto px-6 py-10">
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 animate-fade-in">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight" style="color: var(--text-primary);">
+            Collections<span style="color: var(--accent-blue);">.</span>
+          </h1>
+          <p class="mt-2 text-lg" style="color: var(--text-secondary);">Organize your dream destinations</p>
+        </div>
+      </div>
+
+      <!-- Create List Form -->
+      <div class="glass-card p-6 mb-10 animate-fade-in stagger-1">
+        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color: var(--text-tertiary);">New Collection</h3>
+        <form class="flex flex-col sm:flex-row gap-3" (ngSubmit)="onSubmit()">
+          <input type="text" class="input-glass flex-grow"
+            placeholder="Collection name..." [(ngModel)]="newListName" name="newListName" required>
+          <button type="submit" class="btn-primary whitespace-nowrap flex items-center justify-center gap-2">
+            <i class="fas fa-plus text-sm"></i>
+            <span>Create</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Collections Grid -->
+      <div *ngIf="createdLists.length > 0" class="mb-16">
+        <h2 class="text-sm font-semibold uppercase tracking-wider mb-6 animate-fade-in stagger-2" style="color: var(--text-tertiary);">Your Collections</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div *ngFor="let list of createdLists; let i = index"
+               class="glass-card depth-card p-6 animate-fade-in"
+               [class]="'glass-card depth-card p-6 animate-fade-in stagger-' + ((i % 6) + 1)">
+
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                   style="background: linear-gradient(135deg, rgba(0,113,227,0.2), rgba(0,198,255,0.1));">
+                <i class="fas fa-folder text-sm" style="color: #0071e3;"></i>
+              </div>
+              <h3 *ngIf="list?.name" class="text-lg font-semibold tracking-tight" style="color: var(--text-primary);">{{ list.name }}</h3>
+            </div>
+
+            <select *ngIf="likedDestinations?.length"
+                    class="input-glass text-sm mb-4"
+                    (change)="addDestinationToList(list.id, $event)">
+              <option selected disabled>Add a destination...</option>
+              <option *ngFor="let destination of likedDestinations" [value]="destination.id">{{ destination.name }}</option>
+            </select>
+
+            <div *ngIf="list.destinations && list.destinations.length > 0">
+              <div class="space-y-2">
+                <div *ngFor="let destination of list.destinations"
+                     class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"
+                     style="background: rgba(255,255,255,0.04); color: var(--text-secondary);">
+                  <i class="fas fa-location-dot text-xs" style="color: var(--accent-blue);"></i>
+                  <span>{{ destination.name }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="!list.destinations || list.destinations.length === 0" class="py-4 text-center">
+              <p class="text-xs" style="color: var(--text-tertiary);">No destinations yet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Destinations -->
+      <div class="mb-10">
+        <h2 class="text-sm font-semibold uppercase tracking-wider mb-6 animate-fade-in" style="color: var(--text-tertiary);">Saved Destinations</h2>
+
+        <div *ngIf="likedDestinations.length === 0" class="text-center py-16">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
+               style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);">
+            <i class="fas fa-heart text-xl" style="color: var(--text-tertiary);"></i>
+          </div>
+          <p class="text-sm" style="color: var(--text-tertiary);">No saved destinations yet. Discover and like destinations to see them here.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div *ngFor="let destination of likedDestinations; let i = index"
+               class="glass-card depth-card p-6 animate-fade-in"
+               [class]="'glass-card depth-card p-6 animate-fade-in stagger-' + ((i % 6) + 1)">
+            <h3 class="text-lg font-semibold tracking-tight mb-2" style="color: var(--text-primary);">{{ destination.name }}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">{{ destination.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
