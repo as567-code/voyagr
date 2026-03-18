@@ -1,9 +1,10 @@
-const { writeFileSync } = require('fs');
-const { resolve } = require('path');
+const { writeFileSync, mkdirSync } = require('fs');
+const { resolve, dirname } = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const targetPath = resolve(__dirname, './src/environments/environment.ts');
+mkdirSync(dirname(targetPath), { recursive: true });
 const envConfigFile = `export const environment = {
   production: false,
   geminiApiKey: '${process.env.GEMINI_API_KEY}',
