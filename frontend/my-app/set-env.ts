@@ -7,7 +7,7 @@ const targetPath = resolve(__dirname, './src/environments/environment.ts');
 mkdirSync(dirname(targetPath), { recursive: true });
 const envConfigFile = `export const environment = {
   production: false,
-  geminiApiKey: '${process.env.GEMINI_API_KEY}',
+  openRouterApiKey: '${process.env.OPENROUTER_API_KEY}',
   apiUrl: '${process.env.API_URL || ''}',
   backendUrl: '${process.env.BACKEND_URL || 'http://localhost:3000'}',
 };`;
