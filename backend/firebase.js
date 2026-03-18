@@ -12,6 +12,14 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Strip /api prefix when running on Vercel
+app.use((req, _res, next) => {
+  if (req.url.startsWith('/api')) {
+    req.url = req.url.slice(4) || '/';
+  }
+  next();
+});
+
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
@@ -258,7 +266,13 @@ app.get('/getLists/:userId', async (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export for Vercel serverless
+module.exports = app;
+
+// Local dev
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}

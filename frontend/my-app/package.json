@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "node set-env.ts && ng serve",
     "build": "node set-env.ts && ng build",
+    "vercel-build": "node set-env.ts && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
